@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap'); /*font style*/
+
+body{
+    background-color: #E8F1F2;
+}
+
+.container-simulador{
+    display: flex; /*Possibilita a flexibilidade de organização dos elementos dentro do container(container-simulador)*/
+    justify-content: center; /*alinha o conteúdo do container horizontalmente no centro*/
+    align-items: center; /*alinha o conteúdo do container verticalmente no centro*/
+    flex-direction: column; /*caso o container tenha 2 elementos ou mais, ele organiza-os um em cima o outro, de forma vertical*/
+    height: 85vh; /*tamanho da altura do container em medida (vh)*/
+    width: 100%; /*tammanho da largura para 100% da tela*/
+    gap: 1vh; /*espaço entre os elementos (vh) - vertical*/     
+}
+
+.container-simulador-titulo{
+    display: flex; /*Possibilita a flexibilidade de organização dos elementos dentro do container(container-simulador)*/
+    align-items: center; /*alinha o conteúdo do container verticalmente no centro*/
+    justify-content: flex-start; /*alinha o conteúdo do container horizontalmente no centro*/
+    height: 10%; /*tamanho da altura do container em medida de % do elemento pai*/
+    width: 95%; /*tammanho da largura para 10% da tela*/
+}
+
+.container-simulado-titulo-h1{
+    display: flex; /*Possibilita a flexibilidade de organização dos elementos dentro do container(container-simulador)*/
+    align-items: center; /*alinha o conteúdo do container verticalmente no centro*/
+    justify-content: flex-start; /*alinha o conteúdo do container horizontalmente no centro*/
+    height: 100%;
+    width: 60%;
+}
+
+.container-simulador-logo{
+    display: flex; /*Possibilita a flexibilidade de organização dos elementos dentro do container(container-simulador)*/
+    align-items: center; /*alinha o conteúdo do container verticalmente no centro*/
+    justify-content: flex-end; /*alinha o conteúdo do container horizontalmente na direita*/
+    height: 100%;
+    width: 5%;
+}
+
+.container-simulador-logo2{
+    display: flex; /*Possibilita a flexibilidade de organização dos elementos dentro do container(container-simulador)*/
+    align-items: center; /*alinha o conteúdo do container verticalmente no centro*/
+    justify-content: flex-end;/*alinha o conteúdo do container horizontalmente na direita*/
+    height: 100%; /*tamanho da imagem em %*/
+    width: 35%; /*tamanho da largura da imagem em %*/
+}
+
+.container-simulador-logo img{
+    height: 110px; /*tamanho da imagem em px*/
+    display: flex;
+}
+
+.container-simulador-logo2 img{
+    height: 320px; /*tamanho da imagem em px*/
+    display: flex;
+}
+
+.container-simulador-titulo h1{
+    font-family: "Roboto", sans-serif; /*font style*/
+    font-weight: 400; /*grossura da font*/
+    font-size: 2.2rem;
+}
+
+.content-simulador{
+    display: flex; /*Possibilita a flexibilidade de organização dos elementos dentro do container(container-simulador)*/
+    justify-content: center; /*alinha o conteúdo do container horizontalmente no centro*/
+    align-items: center; /*alinha o conteúdo do container verticalmente no centro*/
+    height: 80%; /*tamanho da altura do container em medida (vh)*/
+    width: 95%; /*tammanho da largura para 100% da tela*/
+    gap: 2vh; /*espaço entre os elementos*/
+    padding-top: 3rem;
+}
+
+.content-simulador-right, .content-simulador-left{
+    display: flex; /*Possibilita a flexibilidade de organização dos elementos dentro do container(container-simulador)*/
+    justify-content: center; /*alinha o conteúdo do container horizontalmente no centro*/
+    align-items: center; /*alinha o conteúdo do container verticalmente no centro*/
+    flex-direction: column;
+    height: 95%; /*tamanho da altura do container em medida (vh)*/
+    width: 50%; /*tammanho da largura para 100% da tela*/
+    gap: 1vh; /*espaço entre os elementos (vh) - vertical*/
+    border: 1px solid rgba(0, 0, 0, 0.243); /* borda para visuaização*/
+    border-radius: 0.8rem; /*arredondar borda*/
+    padding: 2rem;
+}
+
+/* Grupo principal do lado direito da interface */
+.content-right-group{
+    display: flex; /* ativa o Flexbox para organizar os elementos */
+    align-items: center; /* centraliza os elementos verticalmente */
+    justify-content: center; /* centraliza os elementos horizontalmente */
+    flex-direction: column; /* coloca os elementos um embaixo do outro */
+    height: 50%; /* ocupa metade da altura do container pai */
+    width: 100%; /* ocupa toda a largura disponível */
+    gap: 2rem; /* espaço entre os elementos filhos */
+}
+
+
+/* Linha que contém label e input */
+.content-right-row{
+    display: flex; /* usa flexbox para alinhar os elementos da linha */
+    align-items: center; /* centraliza verticalmente */
+    justify-content: space-between; /* alinha os elementos à esquerda */
+    width: 95%; /* ocupa 95% da largura do container */
+    height: 5vh;  /* altura baseada na altura da tela */
+    gap: 0.4rem; /* pequeno espaço entre label e input */
+}
+
+
+/* Estilo aplicado aos textos (labels) dentro da linha */
+.content-right-row label{
+    font-family: "Roboto", sans-serif; /* define a fonte do texto */
+    font-weight: 500; /* peso normal da fonte */
+    font-size: 1.2rem; /* tamanho da fonte */
+}
+
+
+/* Estilo aplicado aos campos de entrada (inputs) */
+.content-right-row input{
+    padding: 0.2rem 0.3rem; /* espaço interno do input */
+    border: 1px solid rgba(0, 0, 0, 0.262); /* borda cinza clara */
+    border-radius: 0.2rem; /* cantos levemente arredondados */
+}
+
+
+/* Container onde fica o botão */
+.content-right-button{
+    display: flex; /* usa flexbox */
+    align-items: center; /* centraliza verticalmente */
+    justify-content: center; /* centraliza horizontalmente */
+    width: 95%; /* ocupa quase toda a largura */
+    height: 5vh; /* altura baseada na altura da tela */
+    gap: 0.4rem; /* espaço entre possíveis elementos */
+    padding-bottom: 1rem;
+}
+
+
+/* Estilo do botão */
+.content-right-button button{
+    font-family: "Roboto", sans-serif; /* define a fonte */
+    font-weight: 500; /* peso normal da fonte */
+    padding: 0.7rem 2rem; /* espaço interno do botão */
+    background-color: white; /* cor de fundo branca */
+    border: 1px solid rgba(0, 0, 0, 0.262); /* borda cinza clara */
+    border-radius: 0.2rem; /* cantos arredondados */
+    cursor: pointer; /* muda o cursor para mãozinha ao passar por cima */
+    transition: 0.3s; /* cria uma animação suave para mudanças */
+    font-size: 1.1em;
+}
+
+
+/* Efeito quando o mouse passa sobre o botão */
+.content-right-button button:hover{
+    background-color: #B3EFB2; /* muda a cor do botão para verde claro */
+}
+
+
+/* Área onde aparecem os resultados do cálculo */
+.content-right-res{
+    display: flex; /* ativa flexbox */
+    align-items: center; /* centraliza verticalmente */
+    justify-content: center; /* centraliza horizontalmente */
+    flex-direction: column; /* organiza os elementos em coluna */
+    height: 45%; /* ocupa 45% da altura */
+    width: 90%; /* ocupa 90% da largura */
+    gap: 0.3em; /* espaço pequeno entre os elementos */
+    border-top: 1px solid rgba(0, 0, 0, 0.243); /* linha superior para separar visualmente */
+    border-radius: 0.1rem; /* cantos levemente arredondados */
+}
+
+
+/* Estilo do título dentro da área de resultados */
+.content-right-res h3{
+    font-family: "Roboto", sans-serif; /* define a fonte */
+    font-weight: 400; /* peso normal */
+    font-size: 1.25rem; /* tamanho da fonte */
+}
