@@ -36,6 +36,7 @@ body{
     justify-content: flex-end; /*alinha o conteúdo do container horizontalmente na direita*/
     height: 100%;
     width: 5%;
+    margin-left: 20px;
 }
 
 .container-simulador-logo2{
@@ -47,11 +48,14 @@ body{
 }
 
 .container-simulador-logo img{
-    height: 110px; /*tamanho da imagem em px*/
+    height: 100px; /*tamanho da imagem em px*/
+    width: 100px;
+    margin-left: 290px;
     display: flex;
 }
 
 .container-simulador-logo2 img{
+    width: 250px;
     height: 320px; /*tamanho da imagem em px*/
     display: flex;
 }
@@ -72,13 +76,13 @@ body{
     padding-top: 3rem;
 }
 
-.content-simulador-right, .content-simulador-left{
+.content-simulador-right{
     display: flex; /*Possibilita a flexibilidade de organização dos elementos dentro do container(container-simulador)*/
     justify-content: center; /*alinha o conteúdo do container horizontalmente no centro*/
     align-items: center; /*alinha o conteúdo do container verticalmente no centro*/
     flex-direction: column;
     height: 95%; /*tamanho da altura do container em medida (vh)*/
-    width: 50%; /*tammanho da largura para 100% da tela*/
+    width: 100%; /*ocupa toda a largura do conteúdo, já que o lado esquerdo foi removido*/
     gap: 1vh; /*espaço entre os elementos (vh) - vertical*/
     border: 1px solid rgba(0, 0, 0, 0.243); /* borda para visuaização*/
     border-radius: 0.8rem; /*arredondar borda*/
