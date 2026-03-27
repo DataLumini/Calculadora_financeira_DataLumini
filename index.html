@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="style.css">
     <title>Simulador Financeiro Arabidopsis thaliana</title>
 </head>
 
@@ -12,7 +12,7 @@
     <div class="container-simulador">
         <div class="container-simulador-titulo">
             <div class="container-simulado-titulo-h1">
-                <h1>Simulador Financeiro: Sensor de iluminação da
+                <h1>Simulador Financeiro:
                     <span style="font-style: italic; font-weight: 600;">Arabidopsis thaliana</span>
                 </h1>
             </div>
@@ -23,129 +23,93 @@
                 <img src="./images/logo.svg" alt="">
             </div>
         </div>
+
         <div class="content-simulador">
-            <div class="content-simulador-right">
-                <div class="content-right-group">
-                    <div class="content-right-row">
-                        <label for="id_horasLigado">Insira quantas horas por dia seu ambiente permanece ligado:</label>
-                        <input type="number" id="id_horasLigado">
-                    </div>
-                    <div class="content-right-row">
-                        <label for="id_kwhGasto">Insira a quantidade de KWh ( Quilowatt / Hora ) anual:</label>
-                        <input type="number" id="id_kwhGasto">
-                    </div>
-                    <div class="content-right-row">
-                        <label for="id_precoKWh">Insira o preço do KWh em seu ambiente controlado (em R$):</label>
-                        <input type="number" id="id_precoKWh">
-                    </div>
-                    <div class="content-right-button">
-                        <button onclick="calcular1()">Calcular gasto monetário anual</button>
-                    </div>
+            <div class="content-right-group">
+                <div class="content-right-row">
+                    <label for="id_horasLigado">Horas por dia de iluminação:</label>
+                    <input type="number" id="id_horasLigado" placeholder="Ex: 20">
                 </div>
-                <div class="content-right-res">
-                    <h3 id="id_mensagem"></h3>
-                    <h3></h3>
+                <div class="content-right-row">
+                    <label for="id_kwhGasto">Consumo mensal de KWh:</label>
+                    <input type="number" id="id_kwhGasto" placeholder="Ex: 420">
                 </div>
-            </div>
-        </div>
-</body>
-
-</html>
-
-<script>
-
-    // Função responsável por calcular o gasto de energia e possível prejuízo
-    function calcular1() {
-
-        // Pega o valor digitado no input de kWh gasto e converte para número
-        let kwhGastoAnual = Number(id_kwhGasto.value);
-
-        // Pega o preço do kWh digitado pelo usuário
-        let precoKWh = Number(id_precoKWh.value);
-
-        // Pega quantas horas por dia a iluminação fica ligada
-        let horasLigado = Number(id_horasLigado.value);
-
-        // Calcula o gasto total em dinheiro (kWh gasto * preço do kWh)
-        let totalGastoAnualmente = kwhGastoAnual * precoKWh;
-
-        // Variáveis que irão armazenar a porcentagem de prejuízo e o valor do prejuízo
-        let porcentagem = 0;
-        let prejuizo = 0;
-
-
-        // Se as luzes ficarem ligadas mais de 16h (tempo ideal)
-        if (horasLigado > 16) {
-
-            // Calcula o custo das horas extras que não seriam necessárias
-            prejuizo = (totalGastoAnualmente / (horasLigado * 365)) * ((horasLigado - 16) * 365);
-
-            // Caso esteja exatamente no valor ideal
-        } else if (horasLigado == 16) {
-
-            // Não existe prejuízo
-            prejuizo = 0;
-
-            // Caso esteja abaixo do ideal
-        } else if (horasLigado < 16) {
-
-            // Calcula uma estimativa de perda por falta de iluminação
-            prejuizo = (16 - horasLigado);
-        }
-
-        // Calcula qual porcentagem do gasto total corresponde ao prejuízo
-        porcentagem = (prejuizo / totalGastoAnualmente) * 100;
-
-
-        // Verificação de erro caso os campos estejam preenchidos incorretamente
-        if (horasLigado < 0 || kwhGastoAnual <= 0 || precoKWh <= 0) {
-
-            id_mensagem.innerHTML = `Você não preenchou todos os campos de forma correta, <b> tente novamente. </b>`;
-
-            // Caso as luzes não estejam ligadas
-        } else if (horasLigado == 0) {
-
-            id_mensagem.innerHTML = `O seu plantio não está sendo iluminado adequadamente, isso causará a <b> perda de toda a pesquisa!</b> 
-                Você deve iluminar suas espécimes de <b> <i> Arabidopsis thaliana </i> </b> cerca de 16 horas continuas. <br><br>
+                <div class="content-right-row">
+                    <label for="id_precoKWh">Preço do KWh (R$):</label>
+                    <input type="number" id="id_precoKWh" step="0.01" placeholder="Ex: 0.90">
+                </div>
                 
-                <b>Obs: </b> O valor de retrabalho por câmara da <i>Arabidopsis thaliana</i> não pode ser calculado, por vários fatores 
-            váriaveis de produção que deve ser calculado pelo cliente.`;
+                <button onclick="calcularSimulacao()">Calcular Impacto Financeiro</button>
+            </div>
 
-            // Caso esteja abaixo do tempo ideal
-        } else if (horasLigado == 16) {
+            <div id="id_mensagem"></div>
+        </div>
+    </div>
 
-            // Exibe os resultados do cálculo
-            id_mensagem.innerHTML = `O seu gasto monetário anual com iluminação em seu ambiente controlado é de <span style="color:green;"> R$${totalGastoAnualmente.toFixed(2)}! </span>
-            A quantidade de horas de iluminação está ideal (16 horas), logo você não tem nenhum tipo de prejuizo ou risco relacionado a iluminação.`;
+    <script>
+        function calcularSimulacao() {
+            let horasLigado = Number(id_horasLigado.value);
+            let kwhGastoMensal = Number(id_kwhGasto.value);
+            let precoKWh = Number(id_precoKWh.value);
+            let mensagemDiv = document.getElementById("id_mensagem");
 
-            // Caso esteja tudo correto ou acima do ideal
-        } else if (horasLigado < 16) {
+            if (id_horasLigado.value === "" || id_kwhGasto.value === "" || id_precoKWh.value === "") {
+                mensagemDiv.innerHTML = `<span class="destaque-vermelho">Por favor, preencha todos os campos corretamente.</span>`;
+                return;
+            }
 
-            id_mensagem.innerHTML = `O seu plantio não vai crescer como deveria! 
-            Você deve iluminar espécimes de <b> <i> Arabidopsis thaliana </i> </b> cerca de 16 horas continuas. Há uma chance de perder sua pesquisa ou acabar atrasando cerca de <span style="color: red;"> ${horasLigado * 365} horas </span> de desenvolvimento no ano. <br> <br>
-            
-               <b>Obs: </b> O valor de retrabalho por câmara da <i>Arabidopsis thaliana</i> não pode ser calculado, por vários fatores 
-            váriaveis de produção que deve ser calculado pelo cliente.`;
+            if (horasLigado < 0 || horasLigado > 24) {
+                mensagemDiv.innerHTML = `<span class="destaque-vermelho">Erro: O dia possui apenas 24 horas!</span>`;
+                return;
+            }
 
-            // Caso esteja tudo correto ou acima do ideal
+            let totalGastoAnual = kwhGastoMensal * precoKWh * 12;
+            let horasRetrabalho = horasLigado * 365;
+
+            if (horasLigado === 0) {
+                mensagemDiv.innerHTML = `
+                    <p class="destaque-vermelho">🚨 ALERTA CRÍTICO: Iluminação Zero!</p>
+                    <p><i>Arabidopsis thaliana</i> <b>necessita de no mínimo 16 horas de luz diárias</b> para realizar fotossíntese e sobreviver.</p>
+                    <p>Sem qualquer iluminação, a planta <b>morrerá em poucos dias</b> e sua pesquisa será <b>perdida totalmente</b>, exigindo o reinício completo do experimento do zero.</p>
+                    <p><b>Ação imediata necesária:</b> Ativar a iluminação LED para evitar a morte das amostras!</p>
+                `;
+            } 
+            else if (horasLigado < 16) {
+
+                mensagemDiv.innerHTML = `
+                    <p>Gasto anual estimado: <span class="destaque-verde">R$ ${totalGastoAnual.toFixed(2)}</span>.</p>
+                    <p class="destaque-vermelho">⚠️ Aviso: Iluminação Insuficiente - Risco de Morte!</p>
+                    <p><i>Arabidopsis thaliana</i> requer <b>exatamente 16 horas de luz diária</b>. Seu ambiente mantém apenas <b>${horasLigado} horas</b>, deixando a planta com <b>${16 - horasLigado} horas de deficiência</b>.</p>
+                    <p>Com este período reduzido de luz, a planta sofrerá <b>estresse biológico severo</b>, desenvolvendo lentamente ou podendo <b>morrer</b>. Você terá que recomeçar a pesquisa do zero.</p>
+                    <p><b>Retrabalho estimado:</b> <span class="destaque-vermelho">${horasRetrabalho} horas</span> para reiniciar uma nova pesquisa.</p>
+                    <p><b>Recomendação:</b> Aumentar a iluminação para 16 horas diárias para garantir o sucesso do experimento!</p>
+                `;
+            } 
+            else if (horasLigado === 16) {
+                mensagemDiv.innerHTML = `
+                    <p>Gasto anual: <span class="destaque-verde">R$ ${totalGastoAnual.toFixed(2)}</span>.</p>
+                    <p class="destaque-verde">✅ Eficiência Máxima Alcançada!</p>
+                    <p>Parabéns! Seu ambiente está fornecendo <b>exatamente 16 horas de luz diárias</b> - o período ideal para o desenvolvimento saudável da <i>Arabidopsis thaliana</i>.</p>
+                    <p>A planta receberá toda a luz necessária para realizar fotossíntese adequadamente, crescer normalmente e completar seu ciclo biológico sem estresse.</p>
+                    <p>Seu laboratório opera com <b>0% de desperdício energético</b> e <b>0% de risco biológico</b>. Não há risco de morte e nenhum retrabalho será necessário!</p>
+                `;
+            } 
+            else { 
+                let horasExtrasAnuais = (horasLigado - 16) * 365;
+                let prejuizoFinanceiro = (totalGastoAnual / (horasLigado * 365)) * horasExtrasAnuais;
+                let porcentagemDesperdicio = (prejuizoFinanceiro / totalGastoAnual) * 100;
+
+                mensagemDiv.innerHTML = `
+                    <p>Gasto anual total: <span class="destaque-verde">R$ ${totalGastoAnual.toFixed(2)}</span>.</p>
+                    <p class="destaque-vermelho">💸 Alerta: Desperdício Energético Detectado!</p>
+                    <p>Seu ambiente fornece <b>${horasLigado} horas de luz diárias</b>, quando o ideal para <i>Arabidopsis thaliana</i> é apenas <b>16 horas</b>.</p>
+                    <p>Você está desperdiçando <b>${horasExtrasAnuais} horas</b> de iluminação por ano, gerando um <b>custo fantasma de R$ ${prejuizoFinanceiro.toFixed(2)}/ano</b>.</p>
+                    <p>Este desperdício representa <b>${porcentagemDesperdicio.toFixed(2)}%</b> do seu orçamento total com energia - recursos que poderiam ser usados em outras áreas da pesquisa.</p>
+                    <p><b>Atenção Científica:</b> O excesso de luz pode causar <b>floração precoce</b>, <b>estresse oxidativo</b> e alterar o ciclo biológico natural da planta, comprometendo a qualidade científica do experimento.</p>
+                    <p><b>Recomendação:</b> Reduzir a iluminação para 16 horas diárias para economizar energia e proteger a saúde das amostras!</p>
+                `;
+            }
         }
-        else if (horasLigado > 24) {
-            id_mensagem.innerHTML = `O máximo de horas em um dia são 24 horas! <b> Preencha o campo corretamente. </b>`;
-        }
-        else {
-
-            // Exibe os resultados do cálculo
-            id_mensagem.innerHTML = `O seu gasto monetário anual com iluminação em seu ambiente controlado é de <span style="color:green;"> <b> R$${totalGastoAnualmente.toFixed(2)}</b></span>,
-            sendo <span style="color:red"> <b> R$${prejuizo.toFixed(2)} </b> </span>só de <span style="color:red"><b>prejuízo</b></span>, o que equivale a <b> ${porcentagem.toFixed(2)}% </b> do gasto total.
-            A taxa e valor de prejuízo são calculados a partir do número de horas a mais que a planta recebe, comparado ao
-            número ideal que é 16 horas. <br> <br>
-            
-            <b>Obs: </b> O valor de retrabalho por câmara da <i>Arabidopsis thaliana</i> não pode ser calculado, por vários fatores 
-            váriaveis de produção que deve ser calculado pelo cliente.`;
-        }
-        
-    }
-
-
-
-</script>
+    </script>
+</body>
+</html>
