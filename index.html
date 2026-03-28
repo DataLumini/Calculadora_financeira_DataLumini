@@ -77,8 +77,8 @@
             else if (horasLigado < 16) {
 
                 mensagemDiv.innerHTML = `
-                    <p>Gasto anual estimado: <span class="destaque-verde">R$ ${totalGastoAnual.toFixed(2)}</span>.</p>
-                    <p class="destaque-vermelho">⚠️ Aviso: Iluminação Insuficiente - Risco de Morte!</p>
+                    <p>Gasto anual estimado: <span class="destaque-verde">R$ ${totalGastoAnual.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span>.</p>
+                    <p class="destaque-vermelho">Aviso: Iluminação Insuficiente - Risco de Morte!</p>
                     <p><i>Arabidopsis thaliana</i> requer <b>exatamente 16 horas de luz diária</b>. Seu ambiente mantém apenas <b>${horasLigado} horas</b>, deixando a planta com <b>${16 - horasLigado} horas de deficiência</b>.</p>
                     <p>Com este período reduzido de luz, a planta sofrerá <b>estresse biológico severo</b>, desenvolvendo lentamente ou podendo <b>morrer</b>. Você terá que recomeçar a pesquisa do zero.</p>
                     <p><b>Retrabalho estimado:</b> <span class="destaque-vermelho">${horasRetrabalho} horas</span> para reiniciar uma nova pesquisa.</p>
@@ -87,8 +87,8 @@
             } 
             else if (horasLigado === 16) {
                 mensagemDiv.innerHTML = `
-                    <p>Gasto anual: <span class="destaque-verde">R$ ${totalGastoAnual.toFixed(2)}</span>.</p>
-                    <p class="destaque-verde">✅ Eficiência Máxima Alcançada!</p>
+                    <p>Gasto anual: <span class="destaque-verde">R$ ${totalGastoAnual.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span>.</p>
+                    <p class="destaque-verde">Eficiência Máxima Alcançada!</p>
                     <p>Parabéns! Seu ambiente está fornecendo <b>exatamente 16 horas de luz diárias</b> - o período ideal para o desenvolvimento saudável da <i>Arabidopsis thaliana</i>.</p>
                     <p>A planta receberá toda a luz necessária para realizar fotossíntese adequadamente, crescer normalmente e completar seu ciclo biológico sem estresse.</p>
                     <p>Seu laboratório opera com <b>0% de desperdício energético</b> e <b>0% de risco biológico</b>. Não há risco de morte e nenhum retrabalho será necessário!</p>
@@ -100,10 +100,10 @@
                 let porcentagemDesperdicio = (prejuizoFinanceiro / totalGastoAnual) * 100;
 
                 mensagemDiv.innerHTML = `
-                    <p>Gasto anual total: <span class="destaque-verde">R$ ${totalGastoAnual.toFixed(2)}</span>.</p>
-                    <p class="destaque-vermelho">💸 Alerta: Desperdício Energético Detectado!</p>
+                    <p>Gasto anual total: <span class="destaque-verde">R$ ${totalGastoAnual.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span>.</p>
+                    <p class="destaque-vermelho">Alerta: Desperdício Energético Detectado!</p>
                     <p>Seu ambiente fornece <b>${horasLigado} horas de luz diárias</b>, quando o ideal para <i>Arabidopsis thaliana</i> é apenas <b>16 horas</b>.</p>
-                    <p>Você está desperdiçando <b>${horasExtrasAnuais} horas</b> de iluminação por ano, gerando um <b>custo fantasma de R$ ${prejuizoFinanceiro.toFixed(2)}/ano</b>.</p>
+                    <p>Você está desperdiçando <b>${horasExtrasAnuais} horas</b> de iluminação por ano, gerando um <b>custo fantasma de R$ ${prejuizoFinanceiro.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}/ano</b>.</p>
                     <p>Este desperdício representa <b>${porcentagemDesperdicio.toFixed(2)}%</b> do seu orçamento total com energia - recursos que poderiam ser usados em outras áreas da pesquisa.</p>
                     <p><b>Atenção Científica:</b> O excesso de luz pode causar <b>floração precoce</b>, <b>estresse oxidativo</b> e alterar o ciclo biológico natural da planta, comprometendo a qualidade científica do experimento.</p>
                     <p><b>Recomendação:</b> Reduzir a iluminação para 16 horas diárias para economizar energia e proteger a saúde das amostras!</p>
