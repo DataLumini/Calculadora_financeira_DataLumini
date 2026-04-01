@@ -16,32 +16,30 @@
                     <span style="font-style: italic; font-weight: 600;">Arabidopsis thaliana</span>
                 </h1>
             </div>
-            <div class="container-simulador-logo2">
-                <img src="./images/dataLumini.svg" alt="">
-            </div>
-            <div class="container-simulador-logo">
-                <img src="./images/logo.svg" alt="">
-            </div>
         </div>
 
         <div class="content-simulador">
             <div class="content-right-group">
                 <div class="content-right-row">
-                    <label for="id_horasLigado">Horas por dia de iluminação:</label>
-                    <input type="number" id="id_horasLigado" placeholder="Ex: 20">
+                    <label for="id_horasLigado">Horas de iluminação por dia:</label>
+                    <input type="number" id="id_horasLigado" placeholder="Ex: 20" min="0" max="24">
                 </div>
                 <div class="content-right-row">
-                    <label for="id_kwhGasto">Consumo mensal de KWh:</label>
-                    <input type="number" id="id_kwhGasto" placeholder="Ex: 420">
+                    <label for="id_kwhGasto">Consumo total mensal (kWh):</label>
+                    <input type="number" id="id_kwhGasto" placeholder="Ex: 4500" min="0">
                 </div>
                 <div class="content-right-row">
-                    <label for="id_precoKWh">Preço do KWh (R$):</label>
-                    <input type="number" id="id_precoKWh" step="0.01" placeholder="Ex: 0.90">
+                    <label for="id_precoKWh">Preço da tarifa (R$/kWh):</label>
+                    <input type="number" id="id_precoKWh" step="0.01" placeholder="Ex: 0.90" min="0">
                 </div>
-                
-                <button onclick="calcularSimulacao()">Calcular Impacto Financeiro</button>
-            </div>
+                <div class="content-right-row">
+                    <label for="id_numCameras">Número de Câmaras de Cultivo:</label>
+                    <input type="number" id="id_numCameras" placeholder="Ex: 50" min="0">
+                </div>
 
+                <button onclick="calcularSimulacao()"
+                    style="margin-top: 15px; padding: 10px 20px; cursor: pointer;">Calcular Impacto</button>
+            </div>
             <div id="id_mensagem"></div>
         </div>
     </div>
@@ -51,65 +49,92 @@
             let horasLigado = Number(id_horasLigado.value);
             let kwhGastoMensal = Number(id_kwhGasto.value);
             let precoKWh = Number(id_precoKWh.value);
-            let mensagemDiv = document.getElementById("id_mensagem");
+            let numCameras = Number(id_numCameras.value);
 
-            if (id_horasLigado.value === "" || id_kwhGasto.value === "" || id_precoKWh.value === "") {
-                mensagemDiv.innerHTML = `<span class="destaque-vermelho">Por favor, preencha todos os campos corretamente.</span>`;
+            if (id_horasLigado.value === "" ||
+                id_kwhGasto.value === "" ||
+                id_precoKWh.value === "" ||
+                id_numCameras.value === "") {
+                id_mensagem.innerHTML = `<p class="destaque-vermelho">Por favor, preencha todos os campos.</p>`;
                 return;
             }
 
             if (horasLigado < 0 || horasLigado > 24) {
-                mensagemDiv.innerHTML = `<span class="destaque-vermelho">Erro: O dia possui apenas 24 horas!</span>`;
+                id_mensagem.innerHTML = `<p class="destaque-vermelho">Erro: O dia possui apenas 24 horas e não pode ser negativo.</p>`;
                 return;
             }
 
-            let totalGastoAnual = kwhGastoMensal * precoKWh * 12;
-            let horasRetrabalho = horasLigado * 365;
+            if (kwhGastoMensal < 0 || precoKWh < 0 || numCameras < 0) {
+                id_mensagem.innerHTML = `<p class="destaque-vermelho">Erro: O consumo, o preço e o número de câmaras não podem ser valores negativos.</p>`;
+                return;
+            }
+
+            let gastoAnualTotal = kwhGastoMensal * precoKWh * 12;
+            let perdaCicloCientifico = numCameras * 15000;
+            let custoRetrabalho = numCameras * 2000;
 
             if (horasLigado === 0) {
-                mensagemDiv.innerHTML = `
-                    <p class="destaque-vermelho">🚨 ALERTA CRÍTICO: Iluminação Zero!</p>
-                    <p><i>Arabidopsis thaliana</i> <b>necessita de no mínimo 16 horas de luz diárias</b> para realizar fotossíntese e sobreviver.</p>
-                    <p>Sem qualquer iluminação, a planta <b>morrerá em poucos dias</b> e sua pesquisa será <b>perdida totalmente</b>, exigindo o reinício completo do experimento do zero.</p>
-                    <p><b>Ação imediata necesária:</b> Ativar a iluminação LED para evitar a morte das amostras!</p>
+                id_mensagem.innerHTML = `
+                    <div class="alerta-card">
+                        <h3 class="destaque-vermelho">Alerta Crítico: Risco de Perda Total</h3>
+                        <p>A <i>Arabidopsis thaliana</i> precisa de luz para sobreviver. Sem iluminação, a amostra morrerá em dias e a pesquisa será <b>totalmente perdida</b>.</p>
+                        <ul class="impacto-lista">
+                            <li><b>Prejuízo Científico Imediato:</b> <span class="destaque-vermelho">${formatBRL(perdaCicloCientifico)}</span> perdidos (6 meses de bolsas e reagentes nas ${numCameras} câmaras).</li>
+                            <li><b>Ação necessária:</b> Ative a iluminação imediatamente.</li>
+                        </ul>
+                    </div>
                 `;
-            } 
-            else if (horasLigado < 16) {
-
-                mensagemDiv.innerHTML = `
-                    <p>Gasto anual estimado: <span class="destaque-verde">R$ ${totalGastoAnual.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span>.</p>
-                    <p class="destaque-vermelho">Aviso: Iluminação Insuficiente - Risco de Morte!</p>
-                    <p><i>Arabidopsis thaliana</i> requer <b>exatamente 16 horas de luz diária</b>. Seu ambiente mantém apenas <b>${horasLigado} horas</b>, deixando a planta com <b>${16 - horasLigado} horas de deficiência</b>.</p>
-                    <p>Com este período reduzido de luz, a planta sofrerá <b>estresse biológico severo</b>, desenvolvendo lentamente ou podendo <b>morrer</b>. Você terá que recomeçar a pesquisa do zero.</p>
-                    <p><b>Retrabalho estimado:</b> <span class="destaque-vermelho">${horasRetrabalho} horas</span> para reiniciar uma nova pesquisa.</p>
-                    <p><b>Recomendação:</b> Aumentar a iluminação para 16 horas diárias para garantir o sucesso do experimento!</p>
+            }
+            else if (horasLigado > 0 && horasLigado < 16) {
+                id_mensagem.innerHTML = `
+                    <div class="alerta-card">
+                        <h3 class="destaque-vermelho">Alerta: Risco de Perda do Experimento</h3>
+                        <p>O ideal são <b>16 horas</b> diárias. Com apenas <b>${horasLigado}h</b>, a planta sofre estresse metabólico e retardo no desenvolvimento, invalidando os dados da pesquisa.</p>
+                        <ul class="impacto-lista">
+                            <li><b>Desperdício Científico Estimado:</b> <span class="destaque-vermelho">${formatBRL(perdaCicloCientifico)}</span> (bolsas e reagentes importados) em risco nas ${numCameras} câmaras.</li>
+                            <li><b>Custo de Retrabalho:</b> <span class="destaque-vermelho">${formatBRL(custoRetrabalho)}</span> adicionais para reiniciar ensaios e limpar equipamentos.</li>
+                        </ul>
+                        <p><b>Recomendação:</b> Ajuste para 16h/dia para garantir a padronização e o rigor do estudo.</p>
+                    </div>
                 `;
-            } 
+            }
             else if (horasLigado === 16) {
-                mensagemDiv.innerHTML = `
-                    <p>Gasto anual: <span class="destaque-verde">R$ ${totalGastoAnual.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span>.</p>
-                    <p class="destaque-verde">Eficiência Máxima Alcançada!</p>
-                    <p>Parabéns! Seu ambiente está fornecendo <b>exatamente 16 horas de luz diárias</b> - o período ideal para o desenvolvimento saudável da <i>Arabidopsis thaliana</i>.</p>
-                    <p>A planta receberá toda a luz necessária para realizar fotossíntese adequadamente, crescer normalmente e completar seu ciclo biológico sem estresse.</p>
-                    <p>Seu laboratório opera com <b>0% de desperdício energético</b> e <b>0% de risco biológico</b>. Não há risco de morte e nenhum retrabalho será necessário!</p>
+                id_mensagem.innerHTML = `
+                    <div class="sucesso-card">
+                        <h3 class="destaque-verde">Eficiência Máxima Alcançada</h3>
+                        <p>Seu laboratório fornece exatamente <b>16 horas</b> de luz, o padrão-ouro para o ciclo perfeito da <i>Arabidopsis thaliana</i>.</p>
+                        <ul class="impacto-lista">
+                            <li><b>Zero Custo Fantasma:</b> Você não está desperdiçando energia elétrica.</li>
+                            <li><b>Zero Desperdício Científico:</b> Sua pesquisa está protegida contra falhas de estresse luminoso.</li>
+                        </ul>
+                        <p>Custo anual projetado de energia: <b>${formatBRL(gastoAnualTotal)}</b> (100% otimizado).</p>
+                    </div>
                 `;
-            } 
-            else { 
-                let horasExtrasAnuais = (horasLigado - 16) * 365;
-                let prejuizoFinanceiro = (totalGastoAnual / (horasLigado * 365)) * horasExtrasAnuais;
-                let porcentagemDesperdicio = (prejuizoFinanceiro / totalGastoAnual) * 100;
+            }
+            else if (horasLigado > 16) {
+                let horasExtras = horasLigado - 16;
+                let porcentagemDesperdicio = horasExtras / horasLigado;
+                let custoFantasmaAnual = gastoAnualTotal * porcentagemDesperdicio;
 
-                mensagemDiv.innerHTML = `
-                    <p>Gasto anual total: <span class="destaque-verde">R$ ${totalGastoAnual.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span>.</p>
-                    <p class="destaque-vermelho">Alerta: Desperdício Energético Detectado!</p>
-                    <p>Seu ambiente fornece <b>${horasLigado} horas de luz diárias</b>, quando o ideal para <i>Arabidopsis thaliana</i> é apenas <b>16 horas</b>.</p>
-                    <p>Você está desperdiçando <b>${horasExtrasAnuais} horas</b> de iluminação por ano, gerando um <b>custo fantasma de R$ ${prejuizoFinanceiro.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}/ano</b>.</p>
-                    <p>Este desperdício representa <b>${porcentagemDesperdicio.toFixed(2)}%</b> do seu orçamento total com energia - recursos que poderiam ser usados em outras áreas da pesquisa.</p>
-                    <p><b>Atenção Científica:</b> O excesso de luz pode causar <b>floração precoce</b>, <b>estresse oxidativo</b> e alterar o ciclo biológico natural da planta, comprometendo a qualidade científica do experimento.</p>
-                    <p><b>Recomendação:</b> Reduzir a iluminação para 16 horas diárias para economizar energia e proteger a saúde das amostras!</p>
+                id_mensagem.innerHTML = `
+                    <div class="alerta-card">
+                        <h3 class="destaque-vermelho">Alerta: Custo Fantasma Detectado</h3>
+                        <p>O uso de <b>${horasLigado}h</b> de luz ultrapassa o ideal de 16h. Esse excesso causa estresse oxidativo e floração precoce nas plantas, além de gerar custos desnecessários que impactam o orçamento do projeto.</p>
+                        <ul class="impacto-lista">
+                            <li><b>Desperdício de Energia (Custo Fantasma):</b> <span class="destaque-vermelho">${formatBRL(custoFantasmaAnual)}</span> perdidos por ano (<b>${(porcentagemDesperdicio * 100).toFixed(1)}%</b> da sua conta de energia).</li>
+                            <li><b>Risco de Desperdício Científico:</b> <span class="destaque-vermelho">${formatBRL(perdaCicloCientifico)}</span> em risco caso as ${numCameras} câmaras precisem ser abortadas por estresse.</li>
+                            <li><b>Retrabalho e Manutenção:</b> <span class="destaque-vermelho">${formatBRL(custoRetrabalho)}</span> extras anuais com desgaste precoce de lâmpadas e reinício de testes.</li>
+                        </ul>
+                        <p><b>Recomendação:</b> Reduza a iluminação para 16h para preservar a verba e proteger suas amostras.</p>
+                    </div>
                 `;
             }
         }
+
+        function formatBRL(valor) {
+            return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        }
     </script>
 </body>
+
 </html>

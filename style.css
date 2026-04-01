@@ -1,361 +1,279 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
-/*font style*/
+   @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
-body {
-    background-color: #E8F1F2;
-    margin: 0;
-    font-family: "Roboto", sans-serif;
-}
+   body {
+       background-color: #E8F1F2;
+       margin: 0;
+       font-family: "Roboto", sans-serif;
+   }
 
-.container-simulador {
-    /* background-color: red; */
-    display: flex;
-    /*Possibilita a flexibilidade de organização dos elementos dentro do container(container-simulador)*/
-    /* justify-content: center; */
-    /*alinha o conteúdo do container horizontalmente no centro*/
-    align-items: center;
-    /*alinha o conteúdo do container verticalmente no centro*/
-    flex-direction: column;
-    /*caso o container tenha 2 elementos ou mais, ele organiza-os um em cima o outro, de forma vertical*/
-    min-height: 100vh;
-    /*tamanho da altura do container em medida (vh)*/
-    width: 100%;
-    /*tammanho da largura para 100% da tela*/
-    gap: 1vh;
-    /*espaço entre os elementos (vh) - vertical*/
-    padding: 2rem 1rem;
-    box-sizing: border-box;
-}
+   .container-simulador {
+       display: flex;
+       align-items: center;
+       flex-direction: column;
+       min-height: 100vh;
+       width: 100%;
+       gap: 1vh;
+       padding: 2rem 1rem;
+       box-sizing: border-box;
+   }
 
-.container-simulador-titulo {
-    /* background-color: black; */
-    display: flex;
-    /*Possibilita a flexibilidade de organização dos elementos dentro do container(container-simulador)*/
-    align-items: center;
-    /*alinha o conteúdo do container verticalmente no centro */
-    justify-content: flex-start;
-    /*alinha o conteúdo do container horizontalmente no centro*/
-    height: 10vh;
-    width: 95%;
-    margin-top: 0;
-    /*tammanho da largura para 10% da tela*/
-}
+   .container-simulador-titulo {
+       display: flex;
+       align-items: center;
+       justify-content: flex-start;
+       height: 10vh;
+       width: 95%;
+       margin-top: 0;
+   }
 
-.container-simulado-titulo-h1 {
-    display: flex;
-    /*Possibilita a flexibilidade de organização dos elementos dentro do container(container-simulador)*/
-    align-items: center;
-    /*alinha o conteúdo do container verticalmente no centro*/
-    justify-content: flex-start;
-    /*alinha o conteúdo do container horizontalmente no centro*/
-    height: 100%;
-    width: 60%;
-}
+   .container-simulado-titulo-h1 {
+       display: flex;
+       align-items: center;
+       justify-content: flex-start;
+       height: 100%;
+       width: 60%;
+   }
 
-.container-simulador-logo {
-    display: flex;
-    /*Possibilita a flexibilidade de organização dos elementos dentro do container(container-simulador)*/
-    align-items: center;
-    /*alinha o conteúdo do container verticalmente no centro*/
-    justify-content: flex-end;
-    /*alinha o conteúdo do container horizontalmente na direita*/
-    height: 100%;
-    width: 5%;
-    margin-left: 20px;
-}
+   .container-simulador-logo {
+       display: flex;
+       align-items: center;
+       justify-content: flex-end;
+       height: 100%;
+       width: 5%;
+       margin-left: 20px;
+   }
 
-.container-simulador-logo2 {
-    display: flex;
-    /*Possibilita a flexibilidade de organização dos elementos dentro do container(container-simulador)*/
-    align-items: center;
-    /*alinha o conteúdo do container verticalmente no centro*/
-    justify-content: flex-end;
-    /*alinha o conteúdo do container horizontalmente na direita*/
-    height: 100%;
-    /*tamanho da imagem em %*/
-    width: 35%;
-    /*tamanho da largura da imagem em %*/
-}
+   .container-simulador-logo2 {
+       display: flex;
+       align-items: center;
+       justify-content: flex-end;
+       height: 100%;
+       width: 35%;
+   }
 
-.container-simulador-logo img {
-    height: 100px;
-    /*tamanho da imagem em px*/
-    width: 100px;
-    margin-left: 290px;
-    display: flex;
-}
+   .container-simulador-logo img {
+       height: 100px;
+       width: 100px;
+       margin-left: 290px;
+       display: flex;
+   }
 
-.container-simulador-logo2 img {
-    width: 250px;
-    height: 320px;
-    /*tamanho da imagem em px*/
-    display: flex;
-}
+   .container-simulador-logo2 img {
+       width: 250px;
+       height: 320px;
+       display: flex;
+   }
 
-.container-simulador-titulo h1 {
-    font-family: "Roboto", sans-serif;
-    /*font style*/
-    font-weight: 400;
-    /*grossura da font*/
-    font-size: 2.2rem;
-    margin: 0;
-}
+   .container-simulador-titulo h1 {
+       font-family: "Roboto", sans-serif;
+       font-weight: 400;
+       font-size: 2.2rem;
+       margin: 0;
+   }
 
-.content-simulador {
-    display: flex;
-    /*Possibilita a flexibilidade de organização dos elementos dentro do container(container-simulador)*/
-    justify-content: flex-start;
-    /*alinha o conteúdo do container horizontalmente no centro*/
-    align-items: center;
-    /*alinha o conteúdo do container verticalmente no centro*/
-    flex-direction: column;
-    /*organiza os elementos em coluna: menu em cima, resultado embaixo*/
-    min-height: auto;
-    /*tamanho da altura do container em medida (vh)*/
-    width: 95%;
-    /*tammanho da largura para 100% da tela*/
-    gap: 2rem;
-    /*espaço entre os elementos*/
-    padding-top: 1.5rem;
-    max-width: 980px;
-}
+   .content-simulador {
+       display: flex;
+       justify-content: flex-start;
+       align-items: center;
+       flex-direction: column;
+       min-height: auto;
+       width: 95%;
+       gap: 2rem;
+       padding-top: 1.5rem;
+       max-width: 980px;
+   }
 
-.content-simulador-right {
-    display: flex;
-    /*Possibilita a flexibilidade de organização dos elementos dentro do container(container-simulador)*/
-    justify-content: center;
-    /*alinha o conteúdo do container horizontalmente no centro*/
-    align-items: center;
-    /*alinha o conteúdo do container verticalmente no centro*/
-    flex-direction: column;
-    height: 95%;
-    /*tamanho da altura do container em medida (vh)*/
-    width: 100%;
-    /*ocupa toda a largura do conteúdo, já que o lado esquerdo foi removido*/
-    gap: 1vh;
-    /*espaço entre os elementos (vh) - vertical*/
-    border: 1px solid rgba(0, 0, 0, 0.243);
-    /* borda para visuaização*/
-    border-radius: 0.8rem;
-    /*arredondar borda*/
-    padding: 2rem;
-}
+   .content-simulador-right {
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       flex-direction: column;
+       height: 95%;
+       width: 100%;
+       gap: 1vh;
+       border: 1px solid rgba(0, 0, 0, 0.243);
+       border-radius: 0.8rem;
+       padding: 2rem;
+   }
 
-/* Grupo principal do lado direito da interface */
-.content-right-group {
-    display: flex;
-    /* ativa o Flexbox para organizar os elementos */
-    align-items: center;
-    /* centraliza os elementos verticalmente */
-    justify-content: center;
-    /* centraliza os elementos horizontalmente */
-    flex-direction: column;
-    /* coloca os elementos um embaixo do outro */
-    width: 100%;
-    /* ocupa toda a largura disponível */
-    max-width: 760px;
-    gap: 2rem;
-    /* espaço entre os elementos filhos */
-    padding: 2rem;
-    border-radius: 14px;
-    border: 1px solid rgba(0, 0, 0, 0.12);
-    background-color: #ffffff;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
-    box-sizing: border-box;
-}
+   .content-right-group {
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       flex-direction: column;
+       width: 100%;
+       max-width: 760px;
+       gap: 2rem;
+       padding: 2rem;
+       border-radius: 14px;
+       border: 1px solid rgba(0, 0, 0, 0.12);
+       background-color: #ffffff;
+       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+       box-sizing: border-box;
+   }
 
+   .content-right-row {
+       display: flex;
+       align-items: center;
+       justify-content: space-between;
+       width: 95%;
+       min-height: 42px;
+       gap: 0.4rem;
+   }
 
-/* Linha que contém label e input */
-.content-right-row {
-    display: flex;
-    /* usa flexbox para alinhar os elementos da linha */
-    align-items: center;
-    /* centraliza verticalmente */
-    justify-content: space-between;
-    /* alinha os elementos à esquerda */
-    width: 95%;
-    /* ocupa 95% da largura do container */
-    min-height: 42px;
-    /* altura baseada na altura da tela */
-    gap: 0.4rem;
-    /* pequeno espaço entre label e input */
-}
+   .content-right-row label {
+       font-family: "Roboto", sans-serif;
+       font-weight: 500;
+       font-size: 1.2rem;
+   }
 
+   .content-right-row input {
+       padding: 0.45rem 0.55rem;
+       border: 1px solid rgba(0, 0, 0, 0.262);
+       border-radius: 0.35rem;
+       width: 220px;
+       font-size: 1rem;
+   }
 
-/* Estilo aplicado aos textos (labels) dentro da linha */
-.content-right-row label {
-    font-family: "Roboto", sans-serif;
-    /* define a fonte do texto */
-    font-weight: 500;
-    /* peso normal da fonte */
-    font-size: 1.2rem;
-    /* tamanho da fonte */
-}
+   .content-right-row input:focus {
+       outline: none;
+       border-color: #2a9d8f;
+       box-shadow: 0 0 0 2px rgba(42, 157, 143, 0.18);
+   }
 
+   .content-right-group button {
+       font-family: "Roboto", sans-serif;
+       font-weight: 600;
+       padding: 0.75rem 1.25rem;
+       background-color: #2a9d8f;
+       color: #ffffff;
+       border: 0;
+       border-radius: 0.4rem;
+       cursor: pointer;
+       transition: background-color 0.2s ease, transform 0.2s ease;
+       font-size: 1rem;
+       width: 100%;
+       max-width: 420px;
+   }
 
-/* Estilo aplicado aos campos de entrada (inputs) */
-.content-right-row input {
-    padding: 0.45rem 0.55rem;
-    /* espaço interno do input */
-    border: 1px solid rgba(0, 0, 0, 0.262);
-    /* borda cinza clara */
-    border-radius: 0.35rem;
-    /* cantos levemente arredondados */
-    width: 220px;
-    font-size: 1rem;
-}
+   .content-right-group button:hover {
+       background-color: #21867a;
+       transform: translateY(-1px);
+   }
 
-.content-right-row input:focus {
-    outline: none;
-    border-color: #2a9d8f;
-    box-shadow: 0 0 0 2px rgba(42, 157, 143, 0.18);
-}
+   #id_mensagem {
+       width: 100%;
+       max-width: 760px;
+       padding: 1.5rem 1.5rem;
+       border-radius: 12px;
+       background-color: #ffffff;
+       border: 1px solid rgba(0, 0, 0, 0.12);
+       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+       box-sizing: border-box;
+       line-height: 1.6;
+       min-height: 150px;
+   }
 
-.content-right-group button {
-    font-family: "Roboto", sans-serif;
-    font-weight: 600;
-    padding: 0.75rem 1.25rem;
-    background-color: #2a9d8f;
-    color: #ffffff;
-    border: 0;
-    border-radius: 0.4rem;
-    cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.2s ease;
-    font-size: 1rem;
-    width: 100%;
-    max-width: 420px;
-}
+   .destaque-verde {
+       color: #1e8d3f;
+       font-weight: 700;
+   }
 
-.content-right-group button:hover {
-    background-color: #21867a;
-    transform: translateY(-1px);
-}
+   .destaque-vermelho {
+       color: #c42828;
+       font-weight: 700;
+   }
 
-#id_mensagem {
-    width: 100%;
-    max-width: 760px;
-    padding: 1.5rem 1.5rem;
-    border-radius: 12px;
-    background-color: #ffffff;
-    border: 1px solid rgba(0, 0, 0, 0.12);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
-    box-sizing: border-box;
-    line-height: 1.6;
-    min-height: 150px;
-}
+   .content-right-button {
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       width: 95%;
+       height: 5vh;
+       gap: 0.4rem;
+       padding-bottom: 1rem;
+   }
 
-.destaque-verde {
-    color: #1e8d3f;
-    font-weight: 700;
-}
+   .content-right-button button {
+       font-family: "Roboto", sans-serif;
+       font-weight: 500;
+       padding: 0.7rem 2rem;
+       background-color: white;
+       border: 1px solid rgba(0, 0, 0, 0.262);
+       border-radius: 0.2rem;
+       cursor: pointer;
+       transition: 0.3s;
+       font-size: 1.1em;
+   }
 
-.destaque-vermelho {
-    color: #c42828;
-    font-weight: 700;
-}
+   .content-right-button button:hover {
+       background-color: #B3EFB2;
+   }
 
-@media (max-width: 768px) {
-    .container-simulador-titulo h1 {
-        font-size: 1.5rem;
-    }
+   .content-right-res {
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       flex-direction: column;
+       height: 45%;
+       width: 90%;
+       gap: 0.3em;
+       border-top: 1px solid rgba(0, 0, 0, 0.243);
+       border-radius: 0.1rem;
+   }
 
-    .content-right-group {
-        padding: 1.25rem;
-        gap: 1.2rem;
-    }
+   .content-right-res h3 {
+       font-family: "Roboto", sans-serif;
+       font-weight: 400;
+       font-size: 1.25rem;
+   }
 
-    .content-right-row {
-        flex-direction: column;
-        align-items: flex-start;
-    }
+   .alerta-card {
+       background-color: #fff3f3;
+       border-left: 5px solid #d9534f;
+       padding: 15px;
+       margin-top: 20px;
+       border-radius: 4px;
+   }
 
-    .content-right-row label {
-        font-size: 1rem;
-    }
+   .sucesso-card {
+       background-color: #f4fdf4;
+       border-left: 5px solid #5cb85c;
+       padding: 15px;
+       margin-top: 20px;
+       border-radius: 4px;
+   }
 
-    .content-right-row input {
-        width: 100%;
-        box-sizing: border-box;
-    }
-}
+   ul.impacto-lista {
+       margin-top: 10px;
+       padding-left: 20px;
+   }
 
+   ul.impacto-lista li {
+       margin-bottom: 8px;
+   }
 
-/* Container onde fica o botão */
-.content-right-button {
-    display: flex;
-    /* usa flexbox */
-    align-items: center;
-    /* centraliza verticalmente */
-    justify-content: center;
-    /* centraliza horizontalmente */
-    width: 95%;
-    /* ocupa quase toda a largura */
-    height: 5vh;
-    /* altura baseada na altura da tela */
-    gap: 0.4rem;
-    /* espaço entre possíveis elementos */
-    padding-bottom: 1rem;
-}
+   @media (max-width: 768px) {
+       .container-simulador-titulo h1 {
+           font-size: 1.5rem;
+       }
 
+       .content-right-group {
+           padding: 1.25rem;
+           gap: 1.2rem;
+       }
 
-/* Estilo do botão */
-.content-right-button button {
-    font-family: "Roboto", sans-serif;
-    /* define a fonte */
-    font-weight: 500;
-    /* peso normal da fonte */
-    padding: 0.7rem 2rem;
-    /* espaço interno do botão */
-    background-color: white;
-    /* cor de fundo branca */
-    border: 1px solid rgba(0, 0, 0, 0.262);
-    /* borda cinza clara */
-    border-radius: 0.2rem;
-    /* cantos arredondados */
-    cursor: pointer;
-    /* muda o cursor para mãozinha ao passar por cima */
-    transition: 0.3s;
-    /* cria uma animação suave para mudanças */
-    font-size: 1.1em;
-}
+       .content-right-row {
+           flex-direction: column;
+           align-items: flex-start;
+       }
 
+       .content-right-row label {
+           font-size: 1rem;
+       }
 
-/* Efeito quando o mouse passa sobre o botão */
-.content-right-button button:hover {
-    background-color: #B3EFB2;
-    /* muda a cor do botão para verde claro */
-}
-
-
-/* Área onde aparecem os resultados do cálculo */
-.content-right-res {
-    display: flex;
-    /* ativa flexbox */
-    align-items: center;
-    /* centraliza verticalmente */
-    justify-content: center;
-    /* centraliza horizontalmente */
-    flex-direction: column;
-    /* organiza os elementos em coluna */
-    height: 45%;
-    /* ocupa 45% da altura */
-    width: 90%;
-    /* ocupa 90% da largura */
-    gap: 0.3em;
-    /* espaço pequeno entre os elementos */
-    border-top: 1px solid rgba(0, 0, 0, 0.243);
-    /* linha superior para separar visualmente */
-    border-radius: 0.1rem;
-    /* cantos levemente arredondados */
-}
-
-
-/* Estilo do título dentro da área de resultados */
-.content-right-res h3 {
-    font-family: "Roboto", sans-serif;
-    /* define a fonte */
-    font-weight: 400;
-    /* peso normal */
-    font-size: 1.25rem;
-    /* tamanho da fonte */
-}
+       .content-right-row input {
+           width: 100%;
+           box-sizing: border-box;
+       }
+   }
